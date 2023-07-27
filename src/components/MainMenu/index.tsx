@@ -8,7 +8,7 @@ import {
 import type { MenuProps } from 'antd';
 import { Menu } from 'antd';
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 
 type MenuItem = Required<MenuProps>['items'][number];
 //登录到请求到数据之后就可以跟items这个数组进行匹配
@@ -70,12 +70,24 @@ const items: MenuItem[] = [
 const Comp: React.FC = () => {
 
     const navigateTo = useNavigate()
-
+    const currentRoute = useLocation()
     const menuClick = (e: { key: string }) => {
         //点击跳转到对应的路由 编程式导航跳转
         navigateTo(e.key)
     }
-    const [openKeys, setOpenKeys] = useState(['']);
+
+    let firstOpenKey: string = ""
+    function findKey(obj) {
+        return obj.key === currentRoute.pathname
+    }
+    for (let i = 0; i < items.length; i++) {
+        if (items[i]!['children'] && items[i]!['children']?.lemgth > 0 && items[i]!['children'].find(findKey)) {
+            firstOpenKey = items[i]?.key as string
+            break
+        }
+
+    }
+    const [openKeys, setOpenKeys] = useState([firstOpenKey]);
     const handleOpenChange = (keys: string[]) => {
         //什么时候执行函数里面的代码  ? 展开和回收某些菜单的时候执行
         console.log(keys, 'keys')//keys是个数组记录了那一项是展开的
@@ -84,7 +96,7 @@ const Comp: React.FC = () => {
 
     return (
         <Menu theme="dark"
-            defaultSelectedKeys={['/page1']}
+            defaultSelectedKeys={[currentRoute.pathname]}
             mode="inline"
             items={items}
             onClick={menuClick}

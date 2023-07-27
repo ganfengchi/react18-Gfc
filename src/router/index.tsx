@@ -1,5 +1,6 @@
 import React, { lazy } from 'react'
 import Home from '@/view/home'
+import Login from '@/view/Login'
 //路由懒加载
 
 //Navigate重定向组件
@@ -45,6 +46,11 @@ const routes = [
                 element: withLoadingComponent(<Page301 />)
             }
         ]
+    },
+
+    {
+        path:"/login",
+        element: <Login  />
     },
     {
         path:"*",//重定向到page1

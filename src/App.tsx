@@ -1,5 +1,6 @@
 import { useRoutes } from 'react-router-dom'
 import routes from '@/router'
+import 'antd/dist/antd.css'
 
 function App() {
   const outlet = useRoutes(routes)
