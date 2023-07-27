@@ -3,8 +3,9 @@ import { useSelector, useDispatch } from 'react-redux'
 //TS 中土工了 ReturnType ,用来获取函数类型的返回值
 function View() {
     //通过 useSelector 获取v仓库数据
-    const { num } = useSelector((state:RootState) => ({
-        num: state.num
+    const { num ,sarr} = useSelector((state:RootState) => ({
+        num: state.handleNum.num,
+        sarr:state.handleArr.sarr
     }))
     //修改仓库数据
 
@@ -17,6 +18,7 @@ function View() {
         <div>
             <p>page1</p>
             <p>{num}</p>
+           <p>{sarr}</p>
             <button onClick={changeNum}>ANNIU</button>
         </div>
     )
