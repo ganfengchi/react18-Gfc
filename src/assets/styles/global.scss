@@ -1,7 +1,22 @@
-$color:pink;
-body{
-    background-color: $color;
+$color: #eee;
+body {
+  background-color: $color;
+  //禁止选择文字
+  user-select: none;
 }
 img {
-    user-select: none;
+    //禁止图片拖拽
+    -webkit-user-drag: none;
+  
+}
+
+//首页的布局样式
+#components-layout-demo-side .logo {
+  height: 32px;
+  margin: 16px;
+  background: rgba(255, 255, 255, 0.3);
+}
+
+.site-layout .site-layout-background {
+  background: #ccc;
 }

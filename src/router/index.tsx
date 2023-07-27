@@ -1,23 +1,45 @@
-// import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom'
-// import App from '@/App'
-// import Home from '@/view/home'
-// import About from '@/view/about'
+import React, { lazy } from 'react'
+import Home from '@/view/home'
+//路由懒加载
 
-// //2种路由模式  BrowserRouter （History模式）  HashRouter (hash模式)
-// const baseRoute = () => {
-//     return (
-//         <BrowserRouter>
-//             <Routes>
-//                 <Route path='/' element={<App />}>
-//                     {/*Navigate 配置用户访问的时候，重定向到/home路径  */}
-//                     <Route path='/' element={<Navigate to='home' />}></Route>
-//                     <Route path='/home' element={<Home />}></Route>
-//                     <Route path='/about' element={<About />}></Route>
-//                 </Route>
-//             </Routes>
-//         </BrowserRouter>
-//     )
-// }
+//Navigate重定向组件
+import { Navigate } from 'react-router-dom'
 
-// export default baseRoute
+const About = lazy(() => import('@/view/about'))
+const User = lazy(() => import('@/view/user'))
+const Page1 = lazy(() => import('@/view/page1'))
+const Page2 = lazy(() => import('@/view/page2'))
+// Error: A component suspended while responding to synchronous input. This will cause the UI to be replaced with a loading indicator. To fix, updates that suspend should be wrapped with startTransition
+//懒加载的模式需要我们添加一个loading组件
+//懒加载的写法需要在外面套一层Loading组件
 
+//抽离组件
+const withLoadingComponent = (comp: JSX.Element) => {
+    return (
+        <React.Suspense fallback={<div>Loading...</div>}>
+            {comp}
+        </React.Suspense>
+    )
+}
+const routes = [
+    //嵌套路由 开始
+    {
+        path: "/",
+        element: <Navigate to='/page1' />
+    },
+    {
+        path: "/",
+        element: <Home />,
+        children: [
+            {
+                path: "/page1",
+                element: withLoadingComponent(<Page1 />)
+            },
+            {
+                path: "/page2",
+                element: withLoadingComponent(<Page2 />)
+            }
+        ]
+    },
+]
+export default routes
