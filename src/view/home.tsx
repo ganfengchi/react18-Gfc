@@ -1,9 +1,9 @@
 import styles from './home.module.scss'
 
-function Home(){
+function Home() {
     return (
         <div className={styles.box}>
-        about
+            <p>Home</p>
         </div>
     )
 }
