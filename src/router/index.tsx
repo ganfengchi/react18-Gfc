@@ -9,6 +9,7 @@ const About = lazy(() => import('@/view/about'))
 const User = lazy(() => import('@/view/user'))
 const Page1 = lazy(() => import('@/view/page1'))
 const Page2 = lazy(() => import('@/view/page2'))
+const Page301 = lazy(() => import('@/view/page301'))
 // Error: A component suspended while responding to synchronous input. This will cause the UI to be replaced with a loading indicator. To fix, updates that suspend should be wrapped with startTransition
 //懒加载的模式需要我们添加一个loading组件
 //懒加载的写法需要在外面套一层Loading组件
@@ -38,8 +39,16 @@ const routes = [
             {
                 path: "/page2",
                 element: withLoadingComponent(<Page2 />)
+            },
+            {
+                path: "/page3/page301",
+                element: withLoadingComponent(<Page301 />)
             }
         ]
     },
+    {
+        path:"*",//重定向到page1
+        element: <Navigate to='/page1' />
+    }
 ]
 export default routes
