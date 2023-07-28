@@ -1,4 +1,5 @@
 import { useSelector, useDispatch } from 'react-redux'
+import NumStatus from '@/store/NumStates'
 
 //TS 中提供了 ReturnType ,用来获取函数类型的返回值
 function View() {
@@ -17,11 +18,14 @@ function View() {
     const changeNum2 = () => {
         //通过 useDispatch 获取仓库数据
         //redux-thunk 异步写法
-        dispath((dis:Function) => {
-            setTimeout(() => {
-                dis({ type: "add1"})
-            }, 1000)
-        })
+        // dispath((dis:Function) => {
+        //     setTimeout(() => {
+        //         dis({ type: "add1"})
+        //     }, 1000)
+        // })
+
+        //优化redu-thunk的异步写法
+        dispath(NumStatus.asyncActions.asyncAdd1)
     }
 
 
