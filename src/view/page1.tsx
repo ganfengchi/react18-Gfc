@@ -1,6 +1,6 @@
 import { useSelector, useDispatch } from 'react-redux'
 
-//TS 中土工了 ReturnType ,用来获取函数类型的返回值
+//TS 中提供了 ReturnType ,用来获取函数类型的返回值
 function View() {
     //通过 useSelector 获取v仓库数据
     const { num ,sarr} = useSelector((state:RootState) => ({
