@@ -6,8 +6,8 @@ import Login from '@/view/Login'
 //Navigate重定向组件
 import { Navigate } from 'react-router-dom'
 
-const About = lazy(() => import('@/view/about'))
-const User = lazy(() => import('@/view/user'))
+// const About = lazy(() => import('@/view/about'))
+// const User = lazy(() => import('@/view/user'))
 const Page1 = lazy(() => import('@/view/page1'))
 const Page2 = lazy(() => import('@/view/page2'))
 const Page301 = lazy(() => import('@/view/page301'))
