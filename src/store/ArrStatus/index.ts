@@ -12,3 +12,6 @@ export default {
     sarrpush:"sarrpush"
 
 }
+
+
+//普通写法
